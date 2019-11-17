@@ -1,0 +1,14 @@
+[flake8]
+ignore = 
+    # C901: Method too complex - Complexity not an issue
+    C901,
+    # E203: Whitespace before ‘:’ - Conflicts with black
+    E203,
+    # E231: missing whitespace after ',' - Migration files have often have this and black doesn't autofix it
+    E231,
+    # E501: Line too long (82 > 79 characters) - Conflicts with black
+    E501,
+    # W503: Line break before binary operator - Conflicts with black
+    W503
+max-line-length = 88
+max-complexity = 10
