@@ -9,13 +9,16 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Django-Test {% block title %}{% endblock %}</title>
   <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
-  {% block styles %}{% endblock %}
+  {% block styles %}
+  {% endblock %}
 </head>
 
 <body>
-  {% block content %}{% endblock %}
+  {% block content %}
+  {% endblock %}
   <script src="{% static 'polls/site.js' %}"></script>
-  {% block scripts %}{% endblock %}
+  {% block scripts %}
+  {% endblock %}
 </body>
 
 </html>

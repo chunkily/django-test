@@ -128,5 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# NodeJS packages
+node_modules/
+
 # Visual Studio Code settings
 .vscode/
