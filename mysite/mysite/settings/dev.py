@@ -1,4 +1,4 @@
-from mysite.settings.base import *  # noqa
+from mysite.settings.base import *  # noqa: F401, F403
 
 DEBUG = True
 
