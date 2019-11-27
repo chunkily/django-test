@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ("question_text", models.CharField(max_length=200)),
                 ("pub_date", models.DateTimeField(verbose_name="date published")),
             ],
-            options={"db_table": "questions",},
+            options={"db_table": "questions"},
         ),
         migrations.CreateModel(
             name="Choice",
@@ -49,6 +49,6 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={"db_table": "choice",},
+            options={"db_table": "choice"},
         ),
     ]
