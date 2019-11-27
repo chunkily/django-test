@@ -1,4 +1,4 @@
-.PHONY: lint
+.PHONY: lint test docker environment
 
 #################################################################################
 # GLOBALS                                                                       #
@@ -17,10 +17,11 @@ lint:
 	black mysite/
 	flake8 mysite/
 
+## Run automated tests
 test:
 	python mysite/manage.py test polls
 
-# Recreate the development environment
+## Recreate the development environment
 environment:
 	npm install
 	python -m venv ./venv/
