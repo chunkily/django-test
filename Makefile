@@ -13,7 +13,7 @@
 ## Autoformat and lint
 lint:
 	npm run format
-	isort mysite/**/*.py
+	isort -rc mysite/
 	black mysite/
 	flake8 mysite/
 

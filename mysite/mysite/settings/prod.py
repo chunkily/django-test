@@ -1,6 +1,7 @@
 import os
-from mysite.settings.base import BASE_DIR
+
 from mysite.settings.base import *  # noqa: F401, F403
+from mysite.settings.base import BASE_DIR
 
 DEBUG = False
 
