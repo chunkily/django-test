@@ -9,5 +9,15 @@ services:
     env_file: .env
     environment:
       - DJANGO_SETTINGS_MODULE=mysite.settings.prod
+      - POSTGRES_HOST=db
     ports:
       - 8000:8000
+  db:
+    image: postgres
+    env_file: .env
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+volumes:
+  db-data:
