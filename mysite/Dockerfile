@@ -5,7 +5,7 @@ EXPOSE 8000
 
 WORKDIR /app/
 
-ADD ./mysite/requirements.txt /app/requirements.txt
+ADD ./requirements.txt ./requirements.txt
 
 # These packages are required to install psycopg2 on alpine
 # Since there is no psycopg2-binary available for it we need to build from source.
@@ -15,4 +15,4 @@ RUN apk update && \
     python3 -m pip install -r requirements.txt --no-cache-dir && \
     apk --purge del .build-deps
 
-ADD ./mysite/ /app/
+ADD ./ ./
