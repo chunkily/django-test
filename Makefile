@@ -12,8 +12,16 @@
 
 ## Autoformat and lint
 lint:
+	npm run format
 	black mysite/
 	flake8 mysite/
+
+# Recreate the development environment
+environment:
+	npm install
+	python -m venv ./venv/
+	source venv/bin/activate
+	python -m pip install mysite/requirements-dev.txt
 
 #################################################################################
 # PROJECT RULES                                                                 #
