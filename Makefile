@@ -13,8 +13,12 @@
 ## Autoformat and lint
 lint:
 	npm run format
+	isort mysite/**/*.py
 	black mysite/
 	flake8 mysite/
+
+test:
+	python mysite/manage.py test polls
 
 # Recreate the development environment
 environment:
