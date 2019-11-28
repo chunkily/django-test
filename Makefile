@@ -21,7 +21,7 @@ lint:
 test:
 	python mysite/manage.py test polls
 
-## Recreate the development environment
+## Create the development environment
 environment:
 	npm install
 	python -m venv ./venv/

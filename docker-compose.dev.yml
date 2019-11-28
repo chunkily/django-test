@@ -10,6 +10,8 @@ services:
     environment:
       - DJANGO_SETTINGS_MODULE=mysite.settings.dev
       - POSTGRES_HOST=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mysecretpassword
     volumes:
       - ./mysite/:/app/
     ports:
@@ -19,6 +21,9 @@ services:
   db:
     image: postgres
     env_file: .env
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mysecretpassword
     volumes:
       - db-data:/var/lib/postgresql/data
     ports:
