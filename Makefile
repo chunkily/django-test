@@ -1,4 +1,4 @@
-.PHONY: lint test docker environment
+.PHONY: lint test dev environment
 
 #################################################################################
 # GLOBALS                                                                       #
@@ -27,6 +27,11 @@ environment:
 	python -m venv ./venv/
 	source venv/bin/activate
 	python -m pip install mysite/requirements-dev.txt
+
+## Start the development server with docker-compose
+dev:
+	docker-compose --file docker-compose.dev.yml up --build --detach
+	@echo "Open browser at http://localhost:8000/ and hack away!"
 
 #################################################################################
 # PROJECT RULES                                                                 #
