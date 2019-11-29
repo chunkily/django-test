@@ -133,3 +133,6 @@ node_modules/
 
 # Visual Studio Code settings
 .vscode/
+
+# Webpack build artifacts
+bundle.js
