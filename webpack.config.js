@@ -1,5 +1,7 @@
-const path = require("path");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require("path");
 
 module.exports = {
   mode: "production",
@@ -8,6 +10,11 @@ module.exports = {
     site: "./webpack/site.js"
   },
   plugins: [
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "[name].[contenthash].bundle.css",
+      ignoreOrder: false // Enable to remove warnings about conflicting order
+    }),
     new HtmlWebpackPlugin({
       template: "./webpack/template.html",
       filename: "../../templates/polls/base.html",
@@ -15,9 +22,22 @@ module.exports = {
     })
   ],
   output: {
-    filename: "[name].bundle.js",
+    filename: "[name].[contenthash].bundle.js",
     path: path.resolve(__dirname, "mysite", "polls", "static", "polls"),
     publicPath: "/"
+  },
+  optimization: {
+    moduleIds: "hashed",
+    runtimeChunk: "single",
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          chunks: "all"
+        }
+      }
+    }
   },
   module: {
     rules: [
@@ -25,7 +45,7 @@ module.exports = {
         test: /\.(scss)$/,
         use: [
           {
-            loader: "style-loader" // inject CSS to page
+            loader: MiniCssExtractPlugin.loader
           },
           {
             loader: "css-loader" // translates CSS into CommonJS modules

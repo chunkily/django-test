@@ -5,20 +5,21 @@
   "private": true,
   "scripts": {
     "build": "webpack",
-    "format": "js-beautify -r webpack/**/*.js webpack/**/*.html mysite/**/*.html mysite/**/*.css",
+    "format": "js-beautify -r webpack/**/*.js webpack/**/*.html mysite/**/*.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Lee Chengkai",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^9.7.2",
+    "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
     "html-webpack-plugin": "^3.2.0",
     "js-beautify": "^1.10.2",
+    "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.13.0",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^8.0.0",
-    "style-loader": "^1.0.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10"
   },

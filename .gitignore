@@ -136,3 +136,5 @@ node_modules/
 
 # Webpack build artifacts
 *.bundle.js
+*.bundle.css
+mysite/polls/templates/polls/base.html
