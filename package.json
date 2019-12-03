@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "webpack",
-    "format": "js-beautify -r mysite/**/*.html mysite/**/*.css",
+    "format": "js-beautify -r webpack/**/*.js webpack/**/*.html mysite/**/*.html mysite/**/*.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Lee Chengkai",
@@ -13,6 +13,7 @@
   "devDependencies": {
     "autoprefixer": "^9.7.2",
     "css-loader": "^3.2.0",
+    "html-webpack-plugin": "^3.2.0",
     "js-beautify": "^1.10.2",
     "node-sass": "^4.13.0",
     "postcss-loader": "^3.0.0",

@@ -135,4 +135,4 @@ node_modules/
 .vscode/
 
 # Webpack build artifacts
-bundle.js
+*.bundle.js

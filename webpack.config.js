@@ -1,11 +1,23 @@
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "production",
-  entry: "./js/index.js",
+  entry: {
+    bootstrap: "./webpack/bootstrap-entry.js",
+    site: "./webpack/site.js"
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./webpack/template.html",
+      filename: "../../templates/polls/base.html",
+      inject: false
+    })
+  ],
   output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "mysite", "polls", "static", "polls")
+    filename: "[name].bundle.js",
+    path: path.resolve(__dirname, "mysite", "polls", "static", "polls"),
+    publicPath: "/"
   },
   module: {
     rules: [

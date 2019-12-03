@@ -8,8 +8,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Django-Test {% block title %}{% endblock %}</title>
-
-
+  <% if (htmlWebpackPlugin.files.favicon) { %>
+  <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.favicon%>">
+  <% } %>
+  <% for (var css in htmlWebpackPlugin.files.css) { %>
+  <link rel="stylesheet" type="text/css" href="{% static 'polls<%= htmlWebpackPlugin.files.css[css] %>' %}">
+  <% } %>
 </head>
 
 <body>
@@ -20,11 +24,9 @@
     {% block content %}
     {% endblock %}
   </div>
-
-  <script src="{% static 'polls/bootstrap.bundle.js' %}"></script>
-
-  <script src="{% static 'polls/site.bundle.js' %}"></script>
-
+  <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+  <script src="{% static 'polls<%= htmlWebpackPlugin.files.chunks[chunk].entry %>' %}"></script>
+  <% } %>
 </body>
 
 </html>
