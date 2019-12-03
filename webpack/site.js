@@ -1,5 +1,7 @@
+require("./site.scss");
+
 $ = require("jquery");
 
-$(".example").click(function(event) {
+$(".example").click(function(e) {
   console.log(".example was clicked");
 });

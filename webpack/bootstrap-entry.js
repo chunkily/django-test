@@ -1,3 +1,3 @@
 import "bootstrap";
 
-require("./index.scss");
+require("./bootstrap-entry.scss");
