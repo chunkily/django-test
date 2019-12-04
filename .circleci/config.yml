@@ -12,6 +12,7 @@ jobs:
         environment:
           DJANGO_SETTINGS_MODULE: mysite.settings.prod
           DJANGO_SECRET_KEY: secret_key_circle
+          POSTGRES_HOST: 127.0.0.1
           POSTGRES_DB: circle_test
           POSTGRES_USER: postgres
       # Specify service dependencies here if necessary
