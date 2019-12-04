@@ -1,10 +1,31 @@
+from django.contrib.auth.models import Group, User
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.utils import timezone
 from django.views import generic
+from rest_framework import viewsets
 
-from .models import Choice, Question
+from polls.models import Choice, Question
+from polls.serializers import GroupSerializer, UserSerializer
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+
+    queryset = User.objects.all().order_by("-date_joined")
+    serializer_class = UserSerializer
+
+
+class GroupViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
 
 
 class IndexView(generic.ListView):

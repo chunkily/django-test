@@ -2,13 +2,28 @@
   "name": "django-test",
   "version": "1.0.0",
   "description": "App to test using Django",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "js-beautify -r mysite/**/*.html mysite/**/*.css"
+    "build": "webpack",
+    "format": "js-beautify -r webpack/**/*.js webpack/**/*.html mysite/**/*.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Lee Chengkai",
   "license": "MIT",
-  "devDependencies": {
-    "js-beautify": "^1.10.2"
+  "dependencies": {
+    "autoprefixer": "^9.7.2",
+    "bootstrap": "^4.4.1",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "jquery": "^3.4.1",
+    "js-beautify": "^1.10.2",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.13.0",
+    "popper.js": "^1.16.0",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^8.0.0",
+    "webpack-cli": "^3.3.10",
+    "webpack": "^4.41.2"
   }
 }

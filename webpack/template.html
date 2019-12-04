@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Django-Test {% block title %}{% endblock %}</title>
+  <% if (htmlWebpackPlugin.files.favicon) { %>
+  <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.favicon%>">
+  <% } %>
+  <% for (var css in htmlWebpackPlugin.files.css) { %>
+  <link rel="stylesheet" type="text/css" href="{% static 'polls<%= htmlWebpackPlugin.files.css[css] %>' %}">
+  <% } %>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="{% url 'polls:index' %}">Polls</a>
+  </nav>
+  <div class="container content">
+    {% block content %}
+    {% endblock %}
+  </div>
+  <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+  <script src="{% static 'polls<%= htmlWebpackPlugin.files.chunks[chunk].entry %>' %}"></script>
+  <% } %>
+</body>
+
+</html>

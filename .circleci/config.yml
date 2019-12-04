@@ -6,29 +6,60 @@ version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
-      # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
-      - image: circleci/python:3.6.1
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
-
+      - image: circleci/node:10
+        environment:
+          NODE_ENV: production
     working_directory: ~/repo
-
     steps:
       - checkout
+
+      - restore_cache:
+          keys:
+            - node-dependencies-{{ checksum "package-lock.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - node-dependencies-
+
+      - run:
+          name: install node dependencies
+          command: npm install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: node-dependencies-{{ checksum "package-lock.json" }}
+
+      - run:
+          name: run webpack
+          command: npm run build
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - mysite
+  test:
+    docker:
+      - image: circleci/python:3.8
+        environment:
+          DJANGO_SETTINGS_MODULE: mysite.settings.prod
+          DJANGO_SECRET_KEY: secret_key_circle
+          POSTGRES_HOST: 127.0.0.1
+          POSTGRES_DB: circle_test
+          POSTGRES_USER: postgres
+      - image: circleci/postgres:10
+    working_directory: ~/repo
+    steps:
+      - attach_workspace:
+          at: .
 
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "mysite/requirements.txt" }}
+            - python-dependencies-{{ checksum "mysite/requirements.txt" }}
             # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+            - python-dependencies-
 
       - run:
-          name: install dependencies
+          name: install python dependencies
           command: |
             python3 -m venv venv
             . venv/bin/activate
@@ -37,13 +68,8 @@ jobs:
       - save_cache:
           paths:
             - ./venv
-          key: v1-dependencies-{{ checksum "mysite/requirements.txt" }}
+          key: python-dependencies-{{ checksum "mysite/requirements.txt" }}
 
-      # run tests!
-      # this example uses Django's built-in test-runner
-      # other common Python testing frameworks include pytest and nose
-      # https://pytest.org
-      # https://nose.readthedocs.io
       - run:
           name: run tests
           command: |
@@ -53,3 +79,12 @@ jobs:
       - store_artifacts:
           path: test-reports
           destination: test-reports
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
